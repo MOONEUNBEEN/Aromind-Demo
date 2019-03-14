@@ -34,4 +34,5 @@ export default {
     background-color: rgb(234,119,142);
     color: white;
   }
+
 </style>

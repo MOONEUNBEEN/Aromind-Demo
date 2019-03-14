@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container" id="createProduct">
-            <h2>Shop-Create Product</h2>
+            <h2>Create Article</h2>
             <hr>
             <br>
             <div class="row">
@@ -9,35 +9,34 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form @submit.prevent="create">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">Upload Image</label>
                                     <input type="file" class="form-control-file" @change="imageChanged">
-                                </div>
+                                </div> -->
                                 <div class="form-group">
-                                    <label for="">Name</label>
-                                    <input name="name" type="text" class="form-control" v-validate="'required'" v-model="product.name">
-                                    <div class="help-block alert alert-danger" v-show="errors.has('name')">
-                                        {{ errors.first('name') }}
+                                    <label for="">Title</label>
+                                    <input name="title" type="text" class="form-control" v-validate="'required'" v-model="article.title">
+                                    <div class="help-block alert alert-danger" v-show="errors.has('title')">
+                                        {{ errors.first('title') }}
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Price</label>
-                                    <input name="price" type="number" class="form-control" v-validate="'max_value:50|min_value:1'" v-model="product.price">
-                                    <div class="help-block alert alert-danger" v-show="errors.has('price')">
-                                        {{ errors.first('price') }}
+                                <!-- <div class="form-group">
+                                    <label for="">Writer</label>
+                                    <input name="writer" type="text" class="form-control" v-validate="'required'" v-model="article.user_id">
+                                    <div class="help-block alert alert-danger" v-show="errors.has('user_id')">
+                                        {{ errors.first('user_id') }}
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="">Description</label>
-                                    <textarea class="form-control" v-model="product.description"></textarea>
+                                    <textarea class="form-control" v-model="article.description"></textarea>
                                 </div>
-
-                                <input type="submit" class="btn btn-primary1 btn-block pull-right" value="Create">
+                                <input type="submit" class="btn btn-primary1 btn-block pull-right" @click="create" value="Create">
                             </form>
                         </div>
                         <br>
                         <div>
-                            <router-link class="view btn btn-outline-secondary1" id="list" :to="'/shop/'">List</router-link>
+                            <router-link class="view btn btn-outline-secondary1" id="list" :to="'/community/'">List</router-link>
                         </div>
                     </div>
                 </div>
@@ -50,17 +49,15 @@
 export default {
     data () {
         return {
-            product: {
-                name: '',
-                price: 0,
-                description: '',
-                image: ''
+            article: {
+                title: '',
+                description: ''
             }
         }
     },
 
     methods: {
-        imageChanged (e) {
+        /* imageChanged (e) {
             console.log(e.target.files[0])
             var fileReader = new FileReader()
 
@@ -69,10 +66,10 @@ export default {
             fileReader.onload = (e) => {
                 this.product.image = e.target.result
             }
-        },
+        }, */
 
         create () {
-            this.$validator.updateDictionary({
+            /* this.$validator.updateDictionary({
                 'al': {
                     attributes: {
                         name: 'emri'
@@ -83,10 +80,15 @@ export default {
             this.$validator.setLocale('al')
 
             this.$validator.validateAll().then(() => {
-                this.$http.post('api/products', this.product)
+                this.$http.post('api/articles', this.article)
                 .then(response => {
-                    this.$router.push('/shop')
+                    this.$router.push('/community')
                 })
+            }) */
+
+            this.$http.post('api/articles', this.article)
+            .then(response => {
+                this.$router.push('/community')
             })
         }
     }

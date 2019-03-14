@@ -1,8 +1,11 @@
 <template>
     <div class="container" id="feed">
-        <h2>Shop-Aroma Oils</h2>
+        <h2 id="font">Shop-Aroma Oils</h2>
         <hr>
         <br>
+        <div id="font">
+            <router-link class="view btn btn-outline-secondary1" id="list" :to="'/products/create/'">Create Product</router-link>
+        </div>
         <my-products></my-products>
     </div>
 </template>
@@ -20,5 +23,20 @@ export default {
 <style>
     #feed {
         padding-top: 6%;
+    }
+
+    #list {
+        color: rgb(234,119,142);
+        width: 11%;
+        float: right;
+    }
+
+    #list:hover {
+        color: white;
+    }
+
+    #font {
+        /* font-family: 'Overpass:800', sans-serif; */
+        font-family: 'Rubik', sans-serif;
     }
 </style>

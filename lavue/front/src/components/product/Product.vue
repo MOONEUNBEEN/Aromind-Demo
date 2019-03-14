@@ -1,9 +1,11 @@
 <template>
     <div class="col-md-4">
-        <div class="card" style="width: 18rem; height: 480px; margin-bottom: 5%;">
-            <img :src="'http://localhost:8000/' + product.image" alt="" style="width: 60%;" class="card-img-top rounded mx-auto d-block">
+        <div id="font" class="card" style="width: 18rem; height: 480px; margin-bottom: 5%;">
+            <router-link class="view" :to="'/products/' + product.id">
+                <img :src="'http://localhost:8000/' + product.image" alt="" style="width: 60%; padding-top: 5%;" class="card-img-top rounded mx-auto d-block">
+            </router-link>
             <div class="card-body">
-                <h5 class="card-title"><router-link class="view" :to="'/products/' + product.id">{{ product.name }}</router-link></h5>
+                <h5 class="card-title"><router-link id="name" class="view" :to="'/products/' + product.id">{{ product.name }}</router-link></h5>
                 <h5 class="card-title">{{ product.price }}</h5>
                 <p class="card-text">Made by {{ product.user_id }}</p>
             </div>
@@ -48,5 +50,16 @@ export default {
     .view:hover {
         color: rgb(234,119,142);
         text-decoration: none;
+    }
+
+    #font {
+        /* font-family: 'Overpass', sans-serif; */
+        font-family: 'Rubik', sans-serif;
+    }
+
+    #name {
+        /* font-family: 'Overpass', sans-serif; */
+        font-family: 'Rubik', sans-serif;
+        font-weight: bold;
     }
 </style>

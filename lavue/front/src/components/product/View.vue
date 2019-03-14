@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="container" id="view">
-            <h2>Shop-Aroma Oils</h2>
+            <h2 id="name">Shop-Aroma Oils</h2>
             <hr>
             <br>
             <div class="row">
                 <div class="media align-items-center" style="margin-left: 17%;">
                     <img :src="'http://localhost:8000/' + product.image" alt="" style="width: 40%;" class="align-self-center mr-3">
-                    <div class="media-body" style="margin-left: 13%;">
-                        <h2 class="mt-0">{{ product.name }}</h2>
+                    <div class="media-body" style="margin-left: 13%;" id="font">
+                        <h2 class="mt-0" id="name">{{ product.name }}</h2>
                         <h4>Price {{ product.price }}</h4>
                         <h5>Made by {{ product.user_id }}</h5>
                         <div class="input-group mb-3">
@@ -25,8 +25,9 @@
                 </div>
             </div>
             <br>
+            <br>
             <div>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div id="menu" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group w-100" role="group" aria-label="First group">
                         <button type="button" class="btn btn-primary1">상품 정보</button>
                         <button type="button" class="btn btn-outline-secondary1">상품 리뷰</button>
@@ -40,6 +41,9 @@
                 <h2 style="float: left; color: rgb(234,119,142);">▶</h2>
                 <h2>{{ product.name }}</h2>
                 <h5 style="margin-left: 3%;">{{ product.description }}</h5>
+            </div>
+            <div>
+                <router-link class="view btn btn-outline-secondary1" id="list" :to="'/shop/'">List</router-link>
             </div>
         </div>
     </div>
@@ -67,5 +71,29 @@ export default {
 <style>
     #view {
         margin-top: 6%;
+    }
+
+    #list {
+        color: rgb(234,119,142);
+        width: 11%;
+        float: right;
+    }
+
+    #list:hover {
+        color: white;
+    }
+
+    #font {
+        font-family: 'Rubik', sans-serif;
+    }
+
+    #name {
+        font-family: 'Rubik', sans-serif;
+        font-weight: bold;
+    }
+
+    #menu {
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: bold;
     }
 </style>

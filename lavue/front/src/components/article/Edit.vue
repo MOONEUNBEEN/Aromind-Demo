@@ -1,29 +1,29 @@
 <template>
     <div class="container"  id="formEdit">
-        <h2>Shop-Edit Product</h2>
+        <h2>Edit Article</h2>
         <hr>
         <div class="row">
             <div class="col-md-12 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="">Upload Image</label>
                             <input type="file" class="form-control-file" @change="imageChanged">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="">Title</label>
+                            <input type="text" class="form-control" v-model="article.title">
                         </div>
                         <div class="form-group">
-                            <label for="">Name</label>
-                            <input type="text" class="form-control" v-model="product.name">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Price</label>
-                            <input type="number" class="form-control" v-model="product.price">
+                            <label for="">Writer</label>
+                            <input type="text" class="form-control" v-model="article.user_id">
                         </div>
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea class="form-control" v-model="product.description"></textarea>
+                            <textarea class="form-control" v-model="article.description"></textarea>
                         </div>
 
-                        <button class="btn btn-primary1 btn-block pull-right" @click="update" v-show="product.name && product.price && product.description">
+                        <button class="btn btn-primary1 btn-block pull-right" @click="update" v-show="article.title && article.user_id && article.description">
                             Update
                         </button>
                     </div>
@@ -42,24 +42,24 @@ import swal from 'sweetalert'
 
 export default {   
     created() {
-        this.getProduct()
+        this.getArticle()
     },
 
     data () {
         return {
-            product: {}
+            article: {}
         }
     },
 
     methods: {
-        getProduct () {
-            this.$http.get('api/products/' + this.$route.params.product)
+        getArticle () {
+            this.$http.get('api/articles/' + this.$route.params.article)
             .then(response => {
-                this.product = response.body
+                this.article = response.body
             })
         },
 
-        imageChanged (e) {
+        /* imageChanged (e) {
             console.log(e.target.files[0])
             var fileReader = new FileReader()
 
@@ -68,13 +68,13 @@ export default {
             fileReader.onload = (e) => {
                 this.product.image = e.target.result
             }
-        },
+        }, */
 
         update () {
-            this.$http.put('api/products/' + this.$route.params.product, this.product)
+            this.$http.put('api/articles/' + this.$route.params.article, this.article)
             .then(response => {
-                swal("Updated!", "Your product has been updated!", "success")
-                this.$router.push('/shop')
+                swal("Updated!", "Your article has been updated!", "success")
+                this.$router.push('/community')
             })
         }
     }

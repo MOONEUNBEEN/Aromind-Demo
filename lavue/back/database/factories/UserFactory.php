@@ -16,7 +16,7 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(User::class, function (Faker $faker) {
+/* $factory->define(User::class, function (Faker $faker) {
     static $password;
 
     return [
@@ -36,4 +36,4 @@ $factory->define(\App\Product::class, function (Faker $faker) {
         'price' => $faker->randomFloat(2, 1, 100),
         'description' => $faker->paragraph(random_int(1, 10))
     ];
-});
+}); */
