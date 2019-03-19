@@ -6,9 +6,12 @@ import VeeValidate from 'vee-validate'
 
 import Auth from './packages/auth/Auth.js'
 
+import BootstrapVue from 'bootstrap-vue'
+
 Vue.use(VueResource)
 Vue.use(Auth)
 Vue.use(VeeValidate)
+Vue.use(BootstrapVue)
 
 Vue.http.options.root = 'http://localhost:8000'
 Vue.http.interceptors.push((request, next) => {
@@ -35,7 +38,7 @@ Router.beforeEach(
         })
       } else next()
     }
-    
+
     else if(to.matched.some(record => record.meta.forAuth)){
       if(!Vue.auth.isAuthenticated()) {
         next({

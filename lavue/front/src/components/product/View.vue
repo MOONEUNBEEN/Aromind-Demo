@@ -1,27 +1,40 @@
 <template>
     <div>
         <div class="container" id="view">
-            <h2 id="name">Shop-Aroma Oils</h2>
+            <h2 id="font">Shop-Aroma Oils</h2>
             <hr>
             <br>
-            <div class="row">
-                <div class="media align-items-center" style="margin-left: 17%;">
-                    <img :src="'http://localhost:8000/' + product.image" alt="" style="width: 40%;" class="align-self-center mr-3">
-                    <div class="media-body" style="margin-left: 13%;" id="font">
-                        <h2 class="mt-0" id="name">{{ product.name }}</h2>
-                        <h4>Price {{ product.price }}</h4>
-                        <h5>Made by {{ product.user_id }}</h5>
-                        <div class="input-group mb-3">
-                            <h5>Quantity</h5>
-                            <input type="number" class="form-control col-2" placeholder="1" aria-label="Recipient's username" aria-describedby="button-addon2" style="margin-left: 4%;">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary1" type="button" id="button-addon2">개</button>
-                            </div>
-                        </div>
-                        <h5>Delivery 1~2day</h5>
-                        <button class="btn btn-outline-secondary1 btn-lg" style="width: 30%;">Wish List</button>
-                        <button class="btn btn-primary1 btn-lg" style="width: 30%;">To Order</button>
-                    </div>
+
+            <div class="row" style="margin-left: 20%;">
+                <div>
+                  <b-media no-body class="align-items-center">
+                    <b-media-aside vertical-align="center">
+                      <b-img :src="'http://localhost:8000/' + product.image" width="382" height="460" />
+                    </b-media-aside>
+
+                    <b-media-body class="ml-3">
+                      <h2 class="mt-0">{{ product.name }}</h2>
+                      <h4>Price {{ product.price }}</h4>
+                      <h5 class="mb-0">Made by {{ product.user_id }}</h5>
+                      <br>
+                      <div>
+                        <b-input-group>
+                          <h5 style="margin-right: 3%;">Quantity</h5>
+
+                          <b-form-input type="number" min="1.00" placeholder="1" class="col-2"/>
+
+                          <b-input-group-append>
+                            <b-button variant="outline-secondary1">개</b-button>
+                          </b-input-group-append>
+                        </b-input-group>
+                      </div>
+                      <br>
+                      <h5>Delivery 1~2day</h5>
+                      <br>
+                      <button class="btn btn-outline-secondary1 btn-lg">Wish List</button>
+                      <button class="btn btn-primary1 btn-lg">To Order</button>
+                    </b-media-body>
+                  </b-media>
                 </div>
             </div>
             <br>

@@ -1,31 +1,43 @@
 <template>
   <div>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="/src/img/ex4.jpg" alt="First slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="/src/img/ex4.jpg" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="/src/img/ex4.jpg" alt="Third slide">
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-      </a>
-    </div>
+    <b-carousel
+      id="carousel1"
+      style="text-shadow: 1px 1px 2px #333;"
+      controls
+      indicators
+      background="#ababab"
+      :interval="4000"
+      img-width="1024"
+      img-height="480"
+      v-model="slide"
+      @sliding-start="onSlideStart"
+      @sliding-end="onSlideEnd"
+    >
+      <!-- Text slides with image -->
+      <b-carousel-slide
+        img-src="/src/img/ex4.jpg"
+      />
+
+      <!-- Slides with custom text -->
+      <b-carousel-slide img-src="/src/img/ex4.jpg">
+      </b-carousel-slide>
+
+      <!-- Slides with image only -->
+      <b-carousel-slide img-src="/src/img/ex4.jpg" />
+
+      <!-- Slides with img slot -->
+      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
+      <b-carousel-slide>
+        <img
+          slot="img"
+          class="d-block img-fluid w-100"
+          width="1024"
+          height="480"
+          src="/src/img/ex4.jpg"
+          alt="image slot"
+        />
+      </b-carousel-slide>
+    </b-carousel>
 
     <main role="main" id="main">
       <div class="container marketing">
@@ -64,7 +76,7 @@
             <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
           </div>
           <div class="col-md-5">
-            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/m6GFB6C_8E4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
 
@@ -104,7 +116,20 @@
 
 <script>
 export default {
-    
+  data() {
+      return {
+        slide: 0,
+        sliding: null
+      }
+  },
+  methods: {
+    onSlideStart(slide) {
+      this.sliding = true
+    },
+    onSlideEnd(slide) {
+      this.sliding = false
+    }
+  }
 }
 </script>
 

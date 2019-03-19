@@ -1,5 +1,5 @@
 <template>
-    <div class="row">        
+    <div class="row">
         <my-product v-for="product in products" @delete-product="deleteProduct(product)" :authenticatedUser="authenticatedUser" :product="product"></my-product>
     </div>
 </template>

@@ -22,7 +22,7 @@ export default function (Vue) {
                 return token
             }
         },
-        
+
         destroyToken () {
             localStorage.removeItem('token')
             localStorage.removeItem('expiration')

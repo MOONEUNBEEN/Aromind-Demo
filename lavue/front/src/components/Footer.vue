@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div id="footBack" style="padding: 3%; margin-top:3%;">
+    <div id="footBack" style="padding: 3%; margin-top: 8%;">
         <div>
             <div class="container text-center">
                 <img src="/src/img/logo1-8.png" width="150" class="d-inline-block align-top" alt="">

@@ -1,33 +1,36 @@
 <template>
-    <div class="col-md-4">
-        <div id="font" class="card" style="width: 18rem; height: 480px; margin-bottom: 5%;">
-            <router-link class="view" :to="'/products/' + product.id">
+    <div class="col-md-4" style="margin-bottom: 1%;">
+        <b-card no-body>
+          <router-link class="view" :to="'/products/' + product.id">
                 <img :src="'http://localhost:8000/' + product.image" alt="" style="width: 60%; padding-top: 5%;" class="card-img-top rounded mx-auto d-block">
-            </router-link>
-            <div class="card-body">
-                <h5 class="card-title"><router-link id="name" class="view" :to="'/products/' + product.id">{{ product.name }}</router-link></h5>
-                <h5 class="card-title">{{ product.price }}</h5>
-                <p class="card-text">Made by {{ product.user_id }}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <a href="#" class="btn btn-outline-secondary1" style="margin-left: 8%;width: 40%;">
-                        Wish list
-                    </a>
-                    <a href="#" class="btn btn-primary1" style="width: 40%;">
-                        Buy
-                    </a>
-                </li>
-            </ul>
-            <div class="card-body" v-if="product.user_id == authenticatedUser.id">
-                <a href="#" class="btn btn-danger" role="button" @click="$emit('delete-product')" style="margin-left: 8%;width: 40%;">
-                        Delete
-                    </a>
-                <router-link class="btn btn-outline-info" :to="'/products/' + product.id + '/edit'" style="width: 40%;">
-                        Edit
-                </router-link>
-            </div>
-        </div>
+          </router-link>
+
+          <b-card-body>
+            <b-card-title>{{ product.name }}</b-card-title>
+            <b-card-sub-title class="mb-2">{{ product.price }}</b-card-sub-title>
+            <b-card-text>
+              Made by {{ product.user_id }}
+            </b-card-text>
+          </b-card-body>
+          <b-list-group flush>
+            <b-list-group-item>
+              <a href="#" class="btn btn-outline-secondary1" style="margin-left: 8%; width: 40%;">
+                Wish list
+              </a>
+              <a href="#" class="btn btn-primary1" style="width: 40%;">
+                Buy
+              </a>
+            </b-list-group-item>
+            <b-list-group-item>
+              <a href="#" class="btn btn-danger" role="button" @click="$emit('delete-product')" style="margin-left: 8%;width: 40%;">
+                Delete
+              </a>
+              <router-link class="btn btn-outline-info" :to="'/products/' + product.id + '/edit'" style="width: 40%;">
+                Edit
+              </router-link>
+            </b-list-group-item>
+          </b-list-group>
+        </b-card>
     </div>
 </template>
 

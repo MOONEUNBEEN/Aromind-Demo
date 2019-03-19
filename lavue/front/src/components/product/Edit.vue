@@ -40,7 +40,7 @@
 <script>
 import swal from 'sweetalert'
 
-export default {   
+export default {
     created() {
         this.getProduct()
     },
