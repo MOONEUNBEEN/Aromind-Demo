@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="margin-top: 5%;">
     <div class="row">
       <div class="col-md-6 mt-5 mx-auto">
         <form v-on:submit.prevent="login">
@@ -20,36 +20,37 @@
 </template>
 
 <script>
-import axios from 'axios'
-import router from '../router'
-import EventBus from './EventBus'
-export default {
-  data () {
-    return {
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    login () {
-      axios.post('/api/login',
-        {
-          email: this.email,
-          password: this.password
-        }
-      ).then((res) => {
-        localStorage.setItem('usertoken', res.data.token)
-        this.email = ''
-        this.password = ''
-        router.push({ name: 'Profile' })
-      }).catch((err) => {
-        console.log(err)
-      })
-      this.emitMethod()
+  import axios from 'axios'
+  import router from '../router'
+  import EventBus from './EventBus'
+
+  export default {
+    data () {
+      return {
+        email: '',
+        password: ''
+      }
     },
-    emitMethod () {
-      EventBus.$emit('logged-in', 'loggedin')
+    methods: {
+      login () {
+        axios.post('/api/login',
+          {
+            email: this.email,
+            password: this.password
+          }
+        ).then((res) => {
+          localStorage.setItem('usertoken', res.data.token)
+          this.email = ''
+          this.password = ''
+          router.push({ name: 'Profile' })
+        }).catch((err) => {
+          console.log(err)
+        })
+        this.emitMethod()
+      },
+      emitMethod () {
+        EventBus.$emit('logged-in', 'loggedin')
+      }
     }
   }
-}
 </script>

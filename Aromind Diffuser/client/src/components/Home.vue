@@ -184,65 +184,67 @@
 </template>
 
 <script type="text/javascript">
-import axios from 'axios'
-import Chart from 'chart.js'
+  import axios from 'axios'
+  import Chart from 'chart.js'
 
-$('document').ready(function () {
   $('#loading').hide();
-});
 
-export default {
-  data() {
+  $('document').ready(function () {
+    $('#loading').hide();
+  });
+
+  export default {
+    data() {
       return {
         slide: 0,
         sliding: null,
         showCollapse: false,
         value: '',
       }
-  },
-  methods: {
-    onSlideStart(slide) {
-      this.sliding = true
     },
-    onSlideEnd(slide) {
-      this.sliding = false
-    },
-    create () {
-      this.$validator.updateDictionary({
-        'al': {
-          attributes: {
-            name: 'emri'
+    methods: {
+      onSlideStart(slide) {
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+        this.sliding = false
+      },
+      create () {
+        this.$validator.updateDictionary({
+          'al': {
+            attributes: {
+              name: 'emri'
+            }
           }
+        })
+        this.$validator.setLocale('al')
+      },
+      analyze() {
+        $('#loading').show();
+        axios.post('/api/emotions',
+        {
+          value: this.value
         }
-      })
-      this.$validator.setLocale('al')
-    },
-    analyze() {
-      $('#loading').show();
-      axios.post('/api/emotions',
-      {
-        value: this.value
-      }
-      ).then((result) => {
-        $('#loading').hide();
-        console.log(result.data)
+        ).then((result) => {
+          $('#loading').hide();
+          console.log(result.data)
 
-        console.log(result.data.sentiment.document)
-        console.log(result.data.sentiment.document.score)
-        console.log(result.data.sentiment.document.label)
+          console.log(result.data.sentiment.document)
+          console.log(result.data.sentiment.document.score)
+          console.log(result.data.sentiment.document.label)
 
-        var label = result.data.sentiment.document.label
-        var score = result.data.sentiment.document.score
+          var label = result.data.sentiment.document.label
+          var score = result.data.sentiment.document.score
 
-        var html = '';
+          var html = '';
 
-        html = "<div class='card' style='padding: 1%;'><h5>Overall Sentiment</h5><h5>" + label + " " + score + "</h5></div> ";
-        $("#status").html(html);
+          html = "<div class='card' style='padding: 1%;'><h5>Overall Sentiment</h5><h5>" + label + " " + score + "</h5></div> ";
+          $("#status").html(html);
 
-        var create = document.getElementById("graph")
-        var ctx = create.getContext("2d")
+          var create = document.getElementById("graph")
+          var ctx = create.getContext("2d")
 
-        var mainChart = new Chart(ctx, {
+          var mainChart = new Chart(ctx, {
             type: 'horizontalBar',
             data: {
               datasets: [{
@@ -278,40 +280,40 @@ export default {
                 }]
               },
               legend: {
-                  display: false
+                display: false
               },
               tooltips: {
-                  callbacks: {
-                    label: function(tooltipItem) {
-                      return tooltipItem.yLabel;
-                    }
+                callbacks: {
+                  label: function(tooltipItem) {
+                    return tooltipItem.yLabel;
                   }
+                }
               }
             }
-        });
+          });
 
-      }).catch((request,status,error) => {
-        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-      })
+        }).catch((request,status,error) => {
+          alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+        })
+      }
     }
   }
-}
 </script>
 
 <style>
   .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
   }
 
   #main {

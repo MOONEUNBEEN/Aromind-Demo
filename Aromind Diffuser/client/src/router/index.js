@@ -8,6 +8,10 @@ import Feed from '@/components/Feed.vue'
 import ProductCreate from '@/components/product/Create.vue'
 import ProductEdit from '@/components/product/Edit.vue'
 import ProductView from '@/components/product/View.vue'
+import Community from '@/components/Community.vue'
+import ArticleCreate from '@/components/article/Create.vue'
+import ArticleEdit from '@/components/article/Edit.vue'
+import ArticleView from '@/components/article/View.vue'
 
 Vue.use(Router)
 
@@ -49,6 +53,22 @@ export default new Router({
     {
       path: "/products/:product",
       component: ProductView
+    },
+    {
+      path: "/community",
+      component: Community
+    },
+    {
+      path: "/articles/create",
+      component: ArticleCreate
+    },
+    {
+      path: "/articles/:article/edit",
+      component: ArticleEdit
+    },
+    {
+      path: "/articles/:article",
+      component: ArticleView
     }
   ]
 })

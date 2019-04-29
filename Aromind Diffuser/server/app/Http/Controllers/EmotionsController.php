@@ -9,7 +9,8 @@ class EmotionsController extends Controller
 {
     public function emotionSearch(Request $request) {
 
-        $value = $request->value;
+        //$value = $request->value;
+        $value = preg_replace("/\s+/","",$request->value);
         Log::alert($value);
         //$value = "안녕하세요";
         //$value = "python C:\lavue\back\app\Http\Controllers\ttt.py 안녕하세요~~~~~~~~~~~";

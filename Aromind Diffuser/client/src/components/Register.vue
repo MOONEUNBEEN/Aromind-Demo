@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="margin-top: 5%;">
     <div class="row">
       <div class="col-md-6 mt-5 mx-auto">
         <form v-on:submit.prevent="register">
@@ -28,32 +28,32 @@
 </template>
 
 <script>
-import axios from 'axios'
-import router from '../router'
-export default {
-  data () {
-    return {
-      first_name: '',
-      last_name: '',
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    register () {
-      axios.post('/api/register',
-        {
-          name: this.first_name + ' ' + this.last_name,
-          email: this.email,
-          password: this.password
-        }
-      ).then((res) => {
-        console.log(res)
-        router.push({ name: 'Login' })
-      }).catch((err) => {
-        console.log(err)
-      })
+  import axios from 'axios'
+  import router from '../router'
+  export default {
+    data () {
+      return {
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: ''
+      }
+    },
+    methods: {
+      register () {
+        axios.post('/api/register',
+          {
+            name: this.first_name + ' ' + this.last_name,
+            email: this.email,
+            password: this.password
+          }
+        ).then((res) => {
+          console.log(res)
+          router.push({ name: 'Login' })
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
     }
   }
-}
 </script>

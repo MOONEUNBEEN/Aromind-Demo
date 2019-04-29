@@ -12,5 +12,5 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
 response = natural_language_understanding.analyze(
     text=str(sys.argv[1]),
     #text = " 안녕하세요",
-    features=Features(sentiment=SentimentOptions())).get_result()
+    features=Features(sentiment=SentimentOptions(targets=['']))).get_result()
 print(json.dumps(response, indent=2))

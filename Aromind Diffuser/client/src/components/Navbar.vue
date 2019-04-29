@@ -30,6 +30,9 @@
           <router-link class="nav-link" to="/shop">Shop</router-link>
         </li>
         <li v-if="auth=='loggedin'" class="nav-item">
+          <router-link class="nav-link" to="/community">Community</router-link>
+        </li>
+        <li v-if="auth=='loggedin'" class="nav-item">
           <router-link class="nav-link" to="/profile">Profile</router-link>
         </li>
         <li v-if="auth=='loggedin'" class="nav-item">
@@ -41,26 +44,28 @@
 </template>
 
 <script>
-import EventBus from './EventBus'
-EventBus.$on('logged-in', test => {
-  console.log(test)
-})
-export default {
-  data () {
-    return {
-      auth: '',
-      user: ''
+  import EventBus from './EventBus'
+
+  EventBus.$on('logged-in', test => {
+    console.log(test)
+  })
+
+  export default {
+    data () {
+      return {
+        auth: '',
+        user: ''
+      }
+    },
+    methods: {
+      logout () {
+        localStorage.removeItem('usertoken')
+      }
+    },
+    mounted () {
+      EventBus.$on('logged-in', status => {
+        this.auth = status
+      })
     }
-  },
-  methods: {
-    logout () {
-      localStorage.removeItem('usertoken')
-    }
-  },
-  mounted () {
-    EventBus.$on('logged-in', status => {
-      this.auth = status
-    })
   }
-}
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="margin-top: 6%;">
     <div class="jumbotron mt-5">
       <div class="col-sm-8 mx-auto">
         <h1 class="text-center">PROFILE</h1>
@@ -21,32 +21,33 @@
 </template>
 
 <script>
-import axios from 'axios'
-export default {
-  data () {
-    this.getUser().then(res => {
-      this.whole_name = res.user.name
-      this.email = res.user.email
-      return res
-    })
-    return {
-      whole_name: '',
-      email: ''
-    }
-  },
-  methods: {
-    getUser () {
-      return axios.get('/api/profile', {
-        headers: { Authorization: `Bearer ${localStorage.usertoken}` }
+  import axios from 'axios'
+
+  export default {
+    data () {
+      this.getUser().then(res => {
+        this.whole_name = res.user.name
+        this.email = res.user.email
+        return res
+      })
+      return {
+        whole_name: '',
+        email: ''
       }
-      ).then(res => {
-        // console.log(res.data)
-        return res.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    },
+    methods: {
+      getUser () {
+        return axios.get('/api/profile', {
+          headers: { Authorization: `Bearer ${localStorage.usertoken}` }
+        }
+        ).then(res => {
+          // console.log(res.data)
+          return res.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
     }
   }
-}
 </script>

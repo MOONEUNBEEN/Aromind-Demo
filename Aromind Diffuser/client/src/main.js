@@ -16,6 +16,7 @@ const base = axios.create({
   baseURL: 'http://localhost:8000'
 })
 Vue.prototype.$http = base;
+
 Vue.use(BootstrapVue)
 Vue.use(VeeValidate)
 Vue.use(Auth)

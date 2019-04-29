@@ -24,3 +24,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('emotions', 'EmotionsController@emotionSearch');
 
 Route::resource('products', 'ProductsController');
+
+Route::resource('articles', 'ArticlesController');

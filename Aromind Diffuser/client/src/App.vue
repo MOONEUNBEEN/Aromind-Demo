@@ -26,6 +26,12 @@ export default {
     color: white;
   }
 
+  .btn-primary1:hover {
+    background: white;
+    border-color: rgb(234,119,142);
+    color: rgb(234,119,142);
+  }
+
   .btn-outline-secondary1 {
     border-color: rgb(234,119,142);
     color: rgb(234,119,142);
